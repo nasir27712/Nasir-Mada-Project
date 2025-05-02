@@ -283,17 +283,6 @@ head(summary_table)
 ```
 
 
-
-
-```{r}
-#| label: tbl-summarytable
-#| tbl-cap: "Data summary table."
-#| echo: FALSE
-resulttable= read_rds(here("code", "eda-code", "tables", "summary_table.rds"))
-knitr::kable(resulttable, format = "pipe")
-
-```
-
 ***Create a plot to show the trend of each variables by region***
 ```{r}
 
@@ -440,16 +429,14 @@ I will performed longitudinal data analysis
 
 ```{r}
 
-vif(lm(tbi ~ hdi + pro_safewater +pro_basicwater + pro_basicsanitation + pro_safesanitation, data = seaa_df)) # The error might be occure due to multicolinearity 
 
-alias(lm(tbi ~ gdp + hdi + pro_cleanfuel + pro_safewater + pro_basicsanitation + 
-         pro_safesanitation + mean_exposure_pm2.5 + total_greenhouses, data = asia_africa))
-
+alias(lm(tbi ~  hdi+ pro_safewater +pro_basicwater + pro_basicsanitation + 
+         pro_safesanitation, data = asia_africa))
 
 
-stepwise_model <- stepAIC(lm(tbi ~ gdp + hdi + pro_cleanfuel + pro_safewater + pro_basicsanitation + 
-                             pro_safesanitation + mean_exposure_pm2.5 + total_greenhouses, 
-                             data = asia_africa), direction = "both") # drop variable with multicolinearity 
+
+stepwise_model <- stepAIC(lm(tbi ~  hdi+ pro_safewater +pro_basicwater + pro_basicsanitation + 
+         pro_safesanitation, data = asia_africa), direction = "both") # drop variable with multicolinearity 
 
 summary(stepwise_model)
 
@@ -462,9 +449,9 @@ Test for mixed or fixed effect using Hausman Test
 ```{r}
 pdata <- pdata.frame(asia_africa, index = c("country", "year"))
 
-fe_model <- plm(tbi ~ pro_basicsanitation + mean_exposure_pm2.5, 
+fe_model <- plm(tbi ~ hdi + pro_safewater+ pro_basicsanitation, 
                 data = pdata, model = "within")
-re_model <- plm(tbi ~ pro_basicsanitation + mean_exposure_pm2.5, 
+re_model <- plm(tbi ~ hdi + pro_safewater+ pro_basicsanitation, 
                 data = pdata, model = "random")
 
 hausman_test <- phtest(fe_model, re_model)
@@ -481,10 +468,9 @@ summary(re_model)
 Interpretation: 
 ***1. variance components Analyisis***
 
-88% dari total variasi berasal dari perbedaan antar negara, menunjukkan bahwa perbedaan karakteristik tiap negara sangat berpengaruh terhadap insiden TBC.
-
-12% berasal dari variasi idiosinkratik, atau faktor yang berubah dari waktu ke waktu dalam suatu negara.
+88% of the total variation comes from differences between countries, indicating that the characteristics of each country have a significant impact on TB incidence.
+12% comes from idiosyncratic variation, or factors that change over time within a given country.
 
 ***2. Theta***
 
-Rata-rata theta = 0.8868, menunjukkan bahwa sebagian besar variasi dalam data disebabkan oleh perbedaan antar negara. Theta yang mendekati 1 berarti bahwa individu (negara) memiliki efek spesifik yang kuat dibandingkan variasi waktu.
+The average theta is 0.8868, indicating that most of the variation in the data is due to differences between countries. A theta value close to 1 suggests that individual (country-specific) effects are strong compared to temporal variation.

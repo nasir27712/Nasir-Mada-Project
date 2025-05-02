@@ -60,7 +60,7 @@ library(tidymodels)
 library(Metrics)
 library(gamm4)
 library(broom)
-install.packages("gratia")
+#install.packages("gratia")
 library(gratia)
 library(dplyr)
 
@@ -132,7 +132,6 @@ print(scatter_faceted)
 
 Non-linearity test
 
-
 ```{r}
 # Compute the correlation matrix for selected variables
 cor(asia_africa[, c("tbi", "pro_basicwater", "pro_safewater", 
@@ -170,8 +169,6 @@ plot(lm_model$fitted.values, resid(lm_model),
 abline(h = 0, col = "red")  # Horizontal line at 0
 
 ```
-
-
 
 ```{r}
 
@@ -269,8 +266,9 @@ smooth_tbl <- as.data.frame(model_summary$s.table) %>%
   )
 
 # Combine parametric and smooth tables
-model_results_tbl <- bind_rows(param_tbl, smooth_tbl) %>%
-  select(type, term, estimate, std.error, edf, chi_sq, p.value)
+model_results_tbl <- combined_tbl %>%
+  dplyr::select(type, term, estimate, std.error, edf, chi_sq, p.value)
+
 
 # Display table with gt
 model_results_tbl %>%
@@ -297,8 +295,6 @@ model_results_tbl %>%
 saveRDS(model_results_tbl, file = here::here("results", "tables", "analysis", "gamm_summary_table.rds"))
 
 ```
-
-
 
 NULL Model
 
@@ -462,8 +458,8 @@ plot(plot_observed_predicted_original)
 
 #Machine Learning read the dataset
 
+*Splitted Dataset*
 
-*Splitted Dataset* 
 ```{r}
 # create setseed for reproductibility 
 ml_seed <- set.seed(2345)
@@ -476,10 +472,9 @@ df_test <- testing(splitted_ml)
 
 ```
 
-***fit the models in to machine learning*** 
+***fit the models in to machine learning***
 
-The study is supposed to use Mixed Effect Random Forest (MERF). Since there is no a specific package for MERF in R,I will use xgboost 
-
+The study is supposed to use Mixed Effect Random Forest (MERF). Since there is no a specific package for MERF in R,I will use xgboost
 
 ***Linear Model***
 
@@ -537,7 +532,9 @@ gamm_model_interactions_train <- gam(
 summary(gamm_model_interactions_train)
 
 ```
-***Fit generated data with  final model***
+
+***Fit generated data with final model***
+
 ```{r}
 # Fit GamM Model with interaction (reduced) with training data 
 gamm_model_interactions_reduced_train  <- gam(
@@ -561,7 +558,6 @@ gamm_model_interactions_reduced_train  <- gam(
 summary(gamm_model_interactions_reduced_train  )
 
 ```
-
 
 **Fit Xgboost with train data**\*
 

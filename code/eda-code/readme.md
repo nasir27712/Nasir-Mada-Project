@@ -1,7 +1,4 @@
 # eda-code
 
-This folder contains code to do a simple exploratory data analysis (EDA) on the processed/cleaned data.
-The code produces a few tables and figures, which are saved in the appropriate `results` sub-folder.
-
-It's the same code done 3 times. For explanations on the 3 different ways, see the readme file in the `processing-code` folder.
+This folder contains code for Exploratory Data Analysis to show the pattern of the data. In this step, we performed all important tests such as normality test, multi-colonearity test, linearity test to decide the most appropriate statistical test to answer the hypoteheses  
 
