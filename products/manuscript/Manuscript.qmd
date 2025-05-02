@@ -211,7 +211,7 @@ binomial distribution). Finally, the model was tunned.
 
 Firs of all, the pattern of the data was explored. The trend of
 Tuberculosis Incidence rate for each country during the period was
-assesed using spagethi plots. As shown in @fig-1 , most countries show a
+assesed using spagethi plots. As shown in figure @fig-1, most countries show a
 decrease of tuberculosis incidence rate over time.
 
 ```{r}
@@ -221,12 +221,12 @@ decrease of tuberculosis incidence rate over time.
 knitr::include_graphics(here::here("results", "figures", "eda", "tbi_spageti.png"))
 ```
 
-Figure (@fig-2) shows the trend of percentage of population using safe
+Figure @fig-2 shows the trend of percentage of population using safe
 water, basic water, safe sanitation, basic sanitation, tuberculosis
 incidence, and human development index over the prerion for each
 country. It can be seen that the percentage of population having access
 to water and sanitation and human development index increase over the
-time, while the tuberculosis incidence decrease. Figure (@fig-3) show
+time, while the tuberculosis incidence decrease. Figure @fig-3 shows
 the trends of all variables based on region.
 
 ```{r}
@@ -253,8 +253,8 @@ As first step of statistical analysis. linearity test was performed, the
 result shows that there is non-linear relationship between tuberculosis
 incidence rate and other predictors. Loess method is used to show the
 non-linear relationship betwen tuberculosis incidence rate and
-predictors. (@fig-4) shows the relationship between tuberculosis
-incidence and predictors and (@fig-5) show the relationhsip after data
+predictors. Figure @fig-4 shows the relationship between tuberculosis
+incidence and predictors and figure @fig-5 shows the relationhsip after data
 transformation. It can be seen that after data transformed, non-linear
 relationship stil exists. Therefore, Generalized Addittive Mixed Model
 is used in this study.
@@ -280,7 +280,7 @@ knitr::include_graphics(here("results","figures", "analysis", "plot_transformed.
 Before going further, we need to look at correlation between
 tuberculosis Incidence and all predictors. Since they show non
 linearity, spearman's correlation performed and showing in the following
-correlation matrix. See (@fig-6) shows that some variables have multi
+correlation matrix. Figure @fig-6 shows that some variables have multi
 collinearity. The matrix shows that water and sanitation have low
 correlation with tuberculosis incidence.
 
@@ -301,8 +301,8 @@ Generalized Addictive Models (GAM), Generalized Mixed Addictive Models
 (GAMM) without interaction, Generalized Mixed Addictive Models (GAMM)
 with two factor interaction, and Generalized Mixed Addictive Models
 (GAMM) with two factor interaction after drop interaction which are not
-significant. AIC and RMSE are used to select the best model. (@fig-7)
-show that and Generalized Mixed Addictive Models (GAMM) with two factor
+significant. AIC and RMSE are used to select the best model. Figure @fig-7 
+shows that and Generalized Mixed Addictive Models (GAMM) with two factor
 interaction after dropin insignificant interaction performed better.
 GAMM with full interactions has low AIC and RMSE, but the degree of
 freedom shows negarive values, indicating inconsistency of the model.
@@ -325,7 +325,7 @@ incorporated smooth functions of year, access to basic and safe water
 and sanitation services, and the Human Development Index (HDI), as well
 as interaction terms between key environmental and socioeconomic
 indicators. A random effect was included for country to account for
-unobserved heterogeneity. (@tbl-1) shows the result of the final model.
+unobserved heterogeneity. Table @tbl-1 shows the result of the final model.
 
 ```{r}
 
@@ -381,7 +381,7 @@ infrastructure and development indicators.
 To test the consistency of the model, machine learning was used.
 
 Using Splitted / generated data shows that the model has a consistent
-result. (@fig-8) shows the observed and predicted values both original
+result.Figure @fig-8 shows the observed and predicted values both original
 and generated data. It can be seen that both original data and generated
 data (both test and training data) have similiar pattern and the plots
 lay very closed or around the line.
@@ -393,7 +393,7 @@ lay very closed or around the line.
 knitr::include_graphics(here("results","figures", "analysis", "plot_ob_pre_ml_vs_ori.png"))
 ```
 
-Figure (@fig-9) shows the performance of machine learning (XGboost). The
+Figure @fig-9 shows the performance of machine learning (XGboost). The
 figure shows how well the model predicted tuberculosis incidence (TBI)
 by comparing the predicted values with the actual reported values for
 both the training and test data. The dotted line represents perfect
@@ -433,7 +433,7 @@ knitr::include_graphics(here("results","figures", "analysis", "autoplot_xgb_tuni
 
 ```
 
-Figure (@fig-10) shows the results of hyperparameter tuning for the
+Figure @fig-10 shows the results of hyperparameter tuning for the
 XGBoost model, showing how different parameter values affected the
 model’s performance, measured by root mean square error (RMSE). Each dot
 represents one combination of hyperparameters tested during

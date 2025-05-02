@@ -66,7 +66,7 @@ The cleaning steps are outlined. The overall exploratory analysis is good. Howev
 
 ### Feedback and Comments
 
-The analysis is detailed and thorough, including AIC/RMSE comparisons among LM, GAM, GAMM, and GAMM + interactions, which is a good practice. In addition, it will be better to provide cross-validated RMSE to show predictive validity if possible.
+The analysis is detailed and thorough, including AIC/RMSE comparisons among LM, GAM, GAMM, and GAMM + interactions, which is a good practice.
 
 ### Summary assessment
 * strong and reasonable analysis
